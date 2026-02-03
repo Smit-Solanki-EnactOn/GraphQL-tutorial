@@ -20,20 +20,20 @@ export const typeDefs = `#graphql
     id: ID!
     title: String!
     platform: [String!]!
-    reviews: [Review!]!
+    reviews: [Review!]!             # Building relation with the "Review" and each game has multiple review so using the []
   }
   type Review {
     id: ID!
     rating: Int!
     content: String!
-    author: Author
-    game: Game
+    game: Game!                     # Building relation with the "Game" data
+    author: Author!                 # Building relation with the "Author" data
   }
   type Author {
     id: ID!
     name: String!
     verified: Boolean!
-    reviews: [Review!]!
+    reviews: [Review!]!             # Building relation with the "Review" and every author has multiple review so using the []
   }
   type Query {
     games: [Game]
