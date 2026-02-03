@@ -67,6 +67,31 @@ const resolvers = {
       return db.authors.find((author) => author.id === parent.author_id);
     },
   },
+  Mutation: {
+    deleteGame(_, args) {
+      const filteredGames = db.games.filter((game) => game.id !== args.id);
+      const deletedGame = db.games.find((game) => game.id === args.id);
+      db.games = filteredGames;
+      return filteredGames;
+    },
+    addGame(_, args) {
+      let game = {
+        ...args.game,
+        id: Math.floor(Math.random() * 1000).toString()
+      }
+      db.games.push(game)
+      return game
+    },
+    updateGame(_, args) {
+      db.games = db.games.map((g) => {
+        if (g.id === args.id) {
+          return { ...g, ...args.edits}
+        }
+        return g
+      })
+      return db.games.find((g) => g.id === args.id)
+    }
+  }
 };
 
 // Apollo Server -

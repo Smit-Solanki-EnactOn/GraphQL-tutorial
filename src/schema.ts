@@ -47,8 +47,23 @@ export const typeDefs = `#graphql
     authors: [Author]
     author(id: ID!): Author         # Get the Author data based on the ID(dynamically from the frontend)
   }
-`;
 
+  type Mutation {
+    deleteGame(id: ID!) : [Game]
+    addGame(game: AddGameInput!) : Game
+    updateGame(id: ID!, edits: EditGameInput!) : Game
+  }
+
+  input AddGameInput {
+    title: String!
+    platform: [String!]!
+  }
+  input EditGameInput {
+    title: String
+    platform: [String!]
+  }
+
+`;
 
 // int, float, string, boolean, ID (unique identifier)
 // here "!" is used to telll that it is required field and cant be null
