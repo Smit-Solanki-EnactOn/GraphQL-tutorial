@@ -37,7 +37,12 @@ export const typeDefs = `#graphql
   }
   type Query {
     games: [Game]
+    game(id: ID!): Game             # Get the Game data based on the ID(dynamically from the frontend)
     reviews: [Review]
+    review(id: ID!): Review         # Get the Review data based on the ID(dynamically from frontend)
     authors: [Author]
+    author(id: ID!): Author         # Get the Author data based on the ID(dynamically from the frontend)
   }
 `;
+// int, float, string, boolean, ID (unique identifier)
+// here "!" is used to telll that it is required field and cant be null
